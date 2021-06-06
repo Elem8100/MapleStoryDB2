@@ -6,8 +6,8 @@
 ![alt tag](https://i.imgur.com/NeqHlpI.png"")
 
 Compile:
-vs2019 or higher
+   vs2019 or higher
 
 Credits and Acknowledgement:
-WzComparerR2
+   WzComparerR2
 
