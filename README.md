@@ -1,5 +1,6 @@
 # MapleStoryDB2
-![alt tag](https://i.imgur.com/s4UNYCU.jpg"")
-![alt tag](https://i.imgur.com/7ETfSHU.jpg"")
-![alt tag](https://i.imgur.com/joCKcoo.jpg"")
+![alt tag](https://i.imgur.com/MZNkTKg.jpg"")
+![alt tag](https://i.imgur.com/L9BgK9E.png"")
+![alt tag](https://i.imgur.com/jseLZpD.png"")
+![alt tag](https://i.imgur.com/NeqHlpI.png"")
 
