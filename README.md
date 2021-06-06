@@ -5,3 +5,9 @@
 ![alt tag](https://i.imgur.com/jseLZpD.png"")
 ![alt tag](https://i.imgur.com/NeqHlpI.png"")
 
+Compile:
+vs2019 or higher
+
+Credits and Acknowledgement:
+WzComparerR2
+
