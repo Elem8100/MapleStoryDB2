@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 using WzComparerR2.Controls;
 using Wz.Utils;
 using DataGrid;
+
 //using WZ.Utils;
 namespace WinFormsApp1
 {
@@ -85,7 +86,7 @@ namespace WinFormsApp1
 
         void PutGridData1(int Col)
         {
-            
+
             string[] FinalStr = new string[RowList1.Count + 1];
             foreach (var i in RowList1.Keys)
             {
@@ -1243,6 +1244,7 @@ namespace WinFormsApp1
         }
         DataViewer[] DataGrid = new DataViewer[39];
         DataViewer[] TempGrid = new DataViewer[39];
+        bool FirstLoadBIN = false;
         void LoadBIN()
         {
             var BinFile = System.Environment.CurrentDirectory + "\\" + Grid.Parent.Name + ".BIN";
@@ -1257,6 +1259,11 @@ namespace WinFormsApp1
                     Graphic.DrawString("Loading...", Font, Brushes.Black, 300, 200);
                 }
                 Grid.LoadBin(BinFile);
+                if (!FirstLoadBIN)
+                {
+                    MessageBox.Show("提示: 必須指定楓之谷資料夾路徑才會顯示道具 ToolTip UI");
+                    FirstLoadBIN = true;
+                }
             }
             else
                 MessageBox.Show(Grid.Parent.Name + ".BIN" + " not found");
@@ -1266,6 +1273,8 @@ namespace WinFormsApp1
 
         public Form1()
         {
+
+
             InitializeComponent();
         }
         Wz_Node find(string c)
@@ -1338,7 +1347,7 @@ namespace WinFormsApp1
                 LoadBIN();
             ToolTip2.tooltipQuickView.Visible = false;
             SetGrid();
-           
+
 
         }
         string GetWzFileName()
@@ -1648,7 +1657,7 @@ namespace WinFormsApp1
         {
 
 
-          
+
 
         }
         string GetIDPath(string ID)
@@ -1926,15 +1935,15 @@ namespace WinFormsApp1
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
             Grid.RowTemplate.Height = int.Parse(comboBox3.Text);
-          //  SearchGrid.RowTemplate.Height = int.Parse(comboBox3.Text);
+            //  SearchGrid.RowTemplate.Height = int.Parse(comboBox3.Text);
             LoadButton_Click(sender, e);
-           
-          
+
+
         }
 
         void SetGrid()
         {
-            Grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+          //  Grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             Grid.DefaultCellStyle.SelectionBackColor = Color.LightCyan;
             Grid.DefaultCellStyle.SelectionForeColor = Color.Black;
             foreach (DataGridViewColumn column in Grid.Columns)
@@ -1947,7 +1956,7 @@ namespace WinFormsApp1
             Grid.Dock = DockStyle.Fill;
             Grid.ShowCellToolTips = false;
             //
-            SearchGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //SearchGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             SearchGrid.DefaultCellStyle.SelectionBackColor = Color.LightCyan;
             SearchGrid.DefaultCellStyle.SelectionForeColor = Color.Black;
             foreach (DataGridViewColumn column in SearchGrid.Columns)
@@ -1963,10 +1972,14 @@ namespace WinFormsApp1
 
             Grid.CellClick += (s, e) =>
             {
-            var SelectID = Grid.Rows[e.RowIndex].Cells[0].Value.ToString();
-            var Node = PluginManager.FindWz(GetIDPath(SelectID));
-            ToolTip2.quickView(Node);
-            ToolTip2.tooltipQuickView.Visible = true;
+                string SelectID = "";
+                if (Grid.Rows[e.RowIndex].Cells[0].Value is string)
+                {
+                    SelectID = Grid.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    var Node = PluginManager.FindWz(GetIDPath(SelectID));
+                    ToolTip2.quickView(Node);
+                    ToolTip2.tooltipQuickView.Visible = true;
+                }
             };
             Grid.Scroll += (s, e) =>
             {
@@ -1974,10 +1987,14 @@ namespace WinFormsApp1
             };
             SearchGrid.CellClick += (s, e) =>
             {
-                var SelectID = SearchGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
-                var Node = PluginManager.FindWz(GetIDPath(SelectID));
-                ToolTip2.quickView(Node);
-                ToolTip2.tooltipQuickView.Visible = true;
+                string SelectID = "";
+                if (SearchGrid.Rows[e.RowIndex].Cells[0].Value is string)
+                {
+                    SelectID = SearchGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    var Node = PluginManager.FindWz(GetIDPath(SelectID));
+                    ToolTip2.quickView(Node);
+                    ToolTip2.tooltipQuickView.Visible = true;
+                }
             };
             SearchGrid.Scroll += (s, e) =>
             {
@@ -1986,10 +2003,58 @@ namespace WinFormsApp1
             Grid.DefaultCellStyle.Font = new System.Drawing.Font("微軟正黑體", int.Parse(comboBox2.Text));
             SearchGrid.DefaultCellStyle.Font = new System.Drawing.Font("微軟正黑體", int.Parse(comboBox2.Text));
 
+            Grid.MouseClick += (s, e) =>
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    ContextMenuStrip m = new ContextMenuStrip();
+                    m.Items.Add("Copy");
+                    int currentMouseOverRow = Grid.HitTest(e.X, e.Y).RowIndex;
+                    m.Show(Grid, new Point(e.X, e.Y));
+                    if (Grid.GetCellCount(DataGridViewElementStates.Selected) > 0)
+                    {
+                        try
+                        {
+                            // Add the selection to the clipboard.
+                            Clipboard.SetDataObject(Grid.GetClipboardContent());
+                        }
+                        catch (System.Runtime.InteropServices.ExternalException)
+                        {
+                            MessageBox.Show("The Clipboard could not be accessed. Please try again.");
+                        }
+                    }
+                }
+
+            };
+            //
+            SearchGrid.MouseClick += (s, e) =>
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    ContextMenuStrip m = new ContextMenuStrip();
+                    m.Items.Add("Copy");
+                    int currentMouseOverRow = SearchGrid.HitTest(e.X, e.Y).RowIndex;
+                    m.Show(SearchGrid, new Point(e.X, e.Y));
+                    if (SearchGrid.GetCellCount(DataGridViewElementStates.Selected) > 0)
+                    {
+                        try
+                        {
+                            // Add the selection to the clipboard.
+                            Clipboard.SetDataObject(SearchGrid.GetClipboardContent());
+                        }
+                        catch (System.Runtime.InteropServices.ExternalException)
+                        {
+                            MessageBox.Show("The Clipboard could not be accessed. Please try again.");
+                        }
+                    }
+                }
+
+            };
+
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+
             //  InitializeComponent();
             ColList = new List<string>();
             RowList = new List<string>();
@@ -2104,7 +2169,8 @@ namespace WinFormsApp1
             SearchGrid = TempGrid[0];
             ToolTip2 = new ToolTip();
             SetGrid();
-
+            Grid.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+           
 
         }
 
