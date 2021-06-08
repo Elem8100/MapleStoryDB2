@@ -32,10 +32,12 @@ namespace WinFormsApp1
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.SaveButton = new System.Windows.Forms.Button();
             this.SearchBox = new System.Windows.Forms.TextBox();
@@ -95,10 +97,12 @@ namespace WinFormsApp1
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.CausesValidation = false;
+            this.panel1.Controls.Add(this.comboBox2);
+            this.panel1.Controls.Add(this.comboBox4);
+            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.comboBox3);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.comboBox2);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.SaveButton);
             this.panel1.Controls.Add(this.SearchBox);
@@ -114,11 +118,96 @@ namespace WinFormsApp1
             this.panel1.Size = new System.Drawing.Size(1592, 35);
             this.panel1.TabIndex = 3;
             // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"});
+            this.comboBox2.Location = new System.Drawing.Point(1174, 5);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(50, 25);
+            this.comboBox2.TabIndex = 10;
+            this.comboBox2.Text = "11";
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.DropDownHeight = 1500;
+            this.comboBox4.Font = new System.Drawing.Font("微軟正黑體", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.IntegralHeight = false;
+            this.comboBox4.ItemHeight = 23;
+            this.comboBox4.Items.AddRange(new object[] {
+            "點商",
+            "消耗",
+            "武器",
+            "帽子",
+            "上衣",
+            "套服",
+            "褲子",
+            "鞋子",
+            "手套",
+            "戒指",
+            "披風",
+            "臉飾",
+            "盾牌",
+            "騎寵",
+            "髮型",
+            "臉型",
+            "地圖(1)",
+            "地圖(2)",
+            "地圖(3)",
+            "怪物(1)",
+            "怪物(2)",
+            "怪物(3)",
+            "技能(1)",
+            "技能(2)",
+            "技能(3)",
+            "Npc",
+            "寵物",
+            "椅子",
+            "機器人",
+            "機械",
+            "寵物裝備",
+            "拼圖",
+            "魔獸裝備",
+            "圖騰",
+            "變身",
+            "萌獸",
+            "傷害字型",
+            "其他",
+            "Reactor"});
+            this.comboBox4.Location = new System.Drawing.Point(1429, 3);
+            this.comboBox4.MaxDropDownItems = 38;
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(100, 31);
+            this.comboBox4.TabIndex = 15;
+            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(1379, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(44, 22);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "項目";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(1386, 7);
+            this.label4.Location = new System.Drawing.Point(1249, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 22);
             this.label4.TabIndex = 13;
@@ -151,7 +240,7 @@ namespace WinFormsApp1
             "120",
             "125",
             "130"});
-            this.comboBox3.Location = new System.Drawing.Point(1434, 4);
+            this.comboBox3.Location = new System.Drawing.Point(1297, 5);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(54, 25);
             this.comboBox3.TabIndex = 12;
@@ -161,32 +250,11 @@ namespace WinFormsApp1
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(1185, 7);
+            this.label3.Location = new System.Drawing.Point(1133, 7);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 22);
             this.label3.TabIndex = 11;
             this.label3.Text = "字體";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15"});
-            this.comboBox2.Location = new System.Drawing.Point(1232, 5);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(50, 25);
-            this.comboBox2.TabIndex = 10;
-            this.comboBox2.Text = "11";
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -221,7 +289,7 @@ namespace WinFormsApp1
             // LoadButton
             // 
             this.LoadButton.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.LoadButton.Location = new System.Drawing.Point(516, 3);
+            this.LoadButton.Location = new System.Drawing.Point(556, 4);
             this.LoadButton.Name = "LoadButton";
             this.LoadButton.Size = new System.Drawing.Size(90, 27);
             this.LoadButton.TabIndex = 6;
@@ -233,7 +301,7 @@ namespace WinFormsApp1
             // 
             this.SelectFolderBox.Location = new System.Drawing.Point(336, 4);
             this.SelectFolderBox.Name = "SelectFolderBox";
-            this.SelectFolderBox.Size = new System.Drawing.Size(131, 25);
+            this.SelectFolderBox.Size = new System.Drawing.Size(185, 25);
             this.SelectFolderBox.TabIndex = 5;
             this.SelectFolderBox.Click += new System.EventHandler(this.SelectFolderBox_Click);
             // 
@@ -241,7 +309,7 @@ namespace WinFormsApp1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(227, 6);
+            this.label1.Location = new System.Drawing.Point(231, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 22);
             this.label1.TabIndex = 4;
@@ -868,6 +936,8 @@ namespace WinFormsApp1
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Label label6;
     }
 }
 

@@ -604,7 +604,8 @@ namespace WinFormsApp1
                 }
             }
             Wz_Node MapDir;
-            if (Arc.MapWz.GetNode("'Map") != null)
+
+            if (Arc.MapWz.GetNode("Map") != null)
                 MapDir = Arc.MapWz.GetNode("Map");
             else
                 MapDir = Arc.Map002Wz.GetNode("Map");
@@ -1312,7 +1313,7 @@ namespace WinFormsApp1
             Grid.Visible = true;
             SearchGrid.Visible = false;
             SearchBox.Clear();
-
+            comboBox4.SelectedIndex = tabControl1.SelectedIndex;
             switch (Grid.DefaultGridType)
             {
                 case GridType.Normal:
@@ -1941,9 +1942,16 @@ namespace WinFormsApp1
 
         }
 
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            tabControl1.SelectedIndex = comboBox4.SelectedIndex;
+
+        }
+
         void SetGrid()
         {
-          //  Grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //  Grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             Grid.DefaultCellStyle.SelectionBackColor = Color.LightCyan;
             Grid.DefaultCellStyle.SelectionForeColor = Color.Black;
             foreach (DataGridViewColumn column in Grid.Columns)
@@ -2170,7 +2178,18 @@ namespace WinFormsApp1
             ToolTip2 = new ToolTip();
             SetGrid();
             Grid.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-           
+
+            Graphics graphics = this.CreateGraphics();
+            float dpiX = graphics.DpiX;
+            double Size10 = ((double)96 / (double)dpiX) * 10;
+            double Size11 = ((double)96 / (double)dpiX) * 11;
+            double Size12 = ((double)96 / (double)dpiX) * 12;
+
+            comboBox1.Font = new Font("微軟正黑體", (float)Size10);
+            label1.Font = new Font("微軟正黑體", (float)Size12);
+            SelectFolderBox.Font = new Font("微軟正黑體", (float)Size10);
+            LoadButton.Font = new Font("微軟正黑體", (float)Size12);
+
 
         }
 
