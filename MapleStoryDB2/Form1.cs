@@ -13,14 +13,13 @@ using System.Text.RegularExpressions;
 using WzComparerR2;
 using WzComparerR2.Common;
 using WzComparerR2.CharaSimControl;
-
 using WzComparerR2.CharaSim;
 using System.Runtime.InteropServices;
 using WzComparerR2.Controls;
 using Wz.Utils;
 using DataGrid;
 
-//using WZ.Utils;
+
 namespace WinFormsApp1
 {
 
@@ -1726,7 +1725,20 @@ namespace WinFormsApp1
                     break;
 
                 case 22:
+                    if (LeftStr(ID, 1) == "0")
+                        return "Skill/000.img/skill/" + ID;
+                    else
+                        return "Skill/" + (int.Parse(ID) / 10000).ToString() + ".img/skill/" + ID;
+                    break;
+
+              
                 case 23:
+                    if(LeftStr(ID,1)=="8")
+                        return "Skill/" + (int.Parse(ID) / 100).ToString() + ".img/skill/" + ID;
+                    else
+                        return "Skill/" + (int.Parse(ID) / 10000).ToString() + ".img/skill/" + ID;
+                    break;
+
                 case 24:
                     return "Skill/" + (int.Parse(ID) / 10000).ToString() + ".img/skill/" + ID;
                     break;
@@ -2184,12 +2196,22 @@ namespace WinFormsApp1
             double Size10 = ((double)96 / (double)dpiX) * 10;
             double Size11 = ((double)96 / (double)dpiX) * 11;
             double Size12 = ((double)96 / (double)dpiX) * 12;
+            double Size13 = ((double)96 / (double)dpiX) * 13;
 
             comboBox1.Font = new Font("微軟正黑體", (float)Size10);
+            comboBox2.Font = new Font("微軟正黑體", (float)Size10);
+            comboBox3.Font = new Font("微軟正黑體", (float)Size10);
+            comboBox4.Font = new Font("微軟正黑體", (float)Size12);
             label1.Font = new Font("微軟正黑體", (float)Size12);
-            SelectFolderBox.Font = new Font("微軟正黑體", (float)Size10);
+            label2.Font = new Font("微軟正黑體", (float)Size12);
+            label3.Font = new Font("微軟正黑體", (float)Size12);
+            label4.Font = new Font("微軟正黑體", (float)Size12);
+            label6.Font = new Font("微軟正黑體", (float)Size12);
+            SelectFolderBox.Font = new Font("微軟正黑體", (float)Size11);
+            SearchBox.Font = new Font("微軟正黑體", (float)Size11);
             LoadButton.Font = new Font("微軟正黑體", (float)Size12);
-
+            SaveButton.Font = new Font("微軟正黑體", (float)Size12);
+            tabControl1.Font= new Font("微軟正黑體", (float)Size13);
 
         }
 

@@ -32,19 +32,19 @@ namespace WinFormsApp1
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.SearchBox = new System.Windows.Forms.TextBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.SaveButton = new System.Windows.Forms.Button();
-            this.SearchBox = new System.Windows.Forms.TextBox();
             this.LoadButton = new System.Windows.Forms.Button();
             this.SelectFolderBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Cash = new System.Windows.Forms.TabPage();
@@ -97,19 +97,19 @@ namespace WinFormsApp1
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.CausesValidation = false;
+            this.panel1.Controls.Add(this.SearchBox);
             this.panel1.Controls.Add(this.comboBox2);
             this.panel1.Controls.Add(this.comboBox4);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.comboBox3);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.SaveButton);
-            this.panel1.Controls.Add(this.SearchBox);
             this.panel1.Controls.Add(this.LoadButton);
             this.panel1.Controls.Add(this.SelectFolderBox);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Font = new System.Drawing.Font("微軟正黑體", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.panel1.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -117,6 +117,15 @@ namespace WinFormsApp1
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1592, 35);
             this.panel1.TabIndex = 3;
+            // 
+            // SearchBox
+            // 
+            this.SearchBox.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.SearchBox.Location = new System.Drawing.Point(752, 3);
+            this.SearchBox.Name = "SearchBox";
+            this.SearchBox.Size = new System.Drawing.Size(160, 27);
+            this.SearchBox.TabIndex = 7;
+            this.SearchBox.TextChanged += new System.EventHandler(this.SearchBox_TextChanged);
             // 
             // comboBox2
             // 
@@ -132,7 +141,7 @@ namespace WinFormsApp1
             "13",
             "14",
             "15"});
-            this.comboBox2.Location = new System.Drawing.Point(1174, 5);
+            this.comboBox2.Location = new System.Drawing.Point(1174, 4);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(50, 25);
             this.comboBox2.TabIndex = 10;
@@ -142,10 +151,11 @@ namespace WinFormsApp1
             // comboBox4
             // 
             this.comboBox4.DropDownHeight = 1500;
-            this.comboBox4.Font = new System.Drawing.Font("微軟正黑體", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBox4.DropDownWidth = 40;
+            this.comboBox4.Font = new System.Drawing.Font("微軟正黑體", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.IntegralHeight = false;
-            this.comboBox4.ItemHeight = 23;
+            this.comboBox4.ItemHeight = 17;
             this.comboBox4.Items.AddRange(new object[] {
             "點商",
             "消耗",
@@ -189,29 +199,20 @@ namespace WinFormsApp1
             this.comboBox4.Location = new System.Drawing.Point(1429, 3);
             this.comboBox4.MaxDropDownItems = 38;
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(100, 31);
+            this.comboBox4.Size = new System.Drawing.Size(100, 25);
             this.comboBox4.TabIndex = 15;
+            this.comboBox4.Text = "點商";
             this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(1379, 9);
+            this.label6.Location = new System.Drawing.Point(1390, 7);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 22);
             this.label6.TabIndex = 14;
             this.label6.Text = "項目";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(1249, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 22);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "列高";
             // 
             // comboBox3
             // 
@@ -240,9 +241,9 @@ namespace WinFormsApp1
             "120",
             "125",
             "130"});
-            this.comboBox3.Location = new System.Drawing.Point(1297, 5);
+            this.comboBox3.Location = new System.Drawing.Point(1297, 4);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(54, 25);
+            this.comboBox3.Size = new System.Drawing.Size(60, 25);
             this.comboBox3.TabIndex = 12;
             this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
@@ -256,16 +257,6 @@ namespace WinFormsApp1
             this.label3.TabIndex = 11;
             this.label3.Text = "字體";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(703, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 22);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "搜尋";
-            // 
             // SaveButton
             // 
             this.SaveButton.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -277,19 +268,10 @@ namespace WinFormsApp1
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // SearchBox
-            // 
-            this.SearchBox.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.SearchBox.Location = new System.Drawing.Point(752, 3);
-            this.SearchBox.Name = "SearchBox";
-            this.SearchBox.Size = new System.Drawing.Size(160, 27);
-            this.SearchBox.TabIndex = 7;
-            this.SearchBox.TextChanged += new System.EventHandler(this.SearchBox_TextChanged);
-            // 
             // LoadButton
             // 
             this.LoadButton.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.LoadButton.Location = new System.Drawing.Point(556, 4);
+            this.LoadButton.Location = new System.Drawing.Point(556, 3);
             this.LoadButton.Name = "LoadButton";
             this.LoadButton.Size = new System.Drawing.Size(90, 27);
             this.LoadButton.TabIndex = 6;
@@ -299,9 +281,10 @@ namespace WinFormsApp1
             // 
             // SelectFolderBox
             // 
-            this.SelectFolderBox.Location = new System.Drawing.Point(336, 4);
+            this.SelectFolderBox.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.SelectFolderBox.Location = new System.Drawing.Point(336, 3);
             this.SelectFolderBox.Name = "SelectFolderBox";
-            this.SelectFolderBox.Size = new System.Drawing.Size(185, 25);
+            this.SelectFolderBox.Size = new System.Drawing.Size(185, 27);
             this.SelectFolderBox.TabIndex = 5;
             this.SelectFolderBox.Click += new System.EventHandler(this.SelectFolderBox_Click);
             // 
@@ -309,7 +292,7 @@ namespace WinFormsApp1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(231, 6);
+            this.label1.Location = new System.Drawing.Point(231, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 22);
             this.label1.TabIndex = 4;
@@ -323,12 +306,32 @@ namespace WinFormsApp1
             this.comboBox1.Items.AddRange(new object[] {
             "Load From WZ",
             "Load From BIN"});
-            this.comboBox1.Location = new System.Drawing.Point(49, 3);
+            this.comboBox1.Location = new System.Drawing.Point(49, 4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(132, 27);
+            this.comboBox1.Size = new System.Drawing.Size(130, 27);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.Text = "Load From WZ";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(712, 8);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 22);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "搜尋";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(1258, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 22);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "列高";
             // 
             // button1
             // 
