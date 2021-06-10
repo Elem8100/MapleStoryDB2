@@ -1547,7 +1547,7 @@ namespace WinFormsApp1
                     {
                         if (Grid.Rows[i].Cells[j].Value is string)
                         {
-                            if (Grid.Rows[i].Cells[j].Value.ToString().ToLower().Contains(SearchStr))
+                            if (Grid.Rows[i].Cells[j].Value.ToString().IndexOf(SearchStr, StringComparison.OrdinalIgnoreCase) >= 0)
                             {
                                 Row = (DataGridViewRow)Grid.Rows[i].Clone();
                                 for (int j2 = 0; j2 < Grid.Columns.Count; j2++)
@@ -1992,9 +1992,10 @@ namespace WinFormsApp1
 
             Grid.CellClick += (s, e) =>
             {
+                if (e.RowIndex == -1) return;
                 string SelectID = "";
                 if (Grid.Rows[e.RowIndex].Cells[0].Value is string)
-                {
+                {  
                     SelectID = Grid.Rows[e.RowIndex].Cells[0].Value.ToString();
                     var Node = PluginManager.FindWz(GetIDPath(SelectID));
                     ToolTip2.quickView(Node);
@@ -2007,6 +2008,7 @@ namespace WinFormsApp1
             };
             SearchGrid.CellClick += (s, e) =>
             {
+                if (e.RowIndex == -1) return;
                 string SelectID = "";
                 if (SearchGrid.Rows[e.RowIndex].Cells[0].Value is string)
                 {
