@@ -1196,12 +1196,16 @@ namespace WinFormsApp1
                   ("Damage Skin")) || (Name.Contains("字型")) || (Name.Contains("伤害皮肤")))
                 {
                     var ID = "0" + Iter.Text;
-                    var Entry = Arc.ItemWz.GetNode("Consume/0243.img/0" + Iter.Text + "/info/icon");
-                    if (Entry != null)
-                        Icon = Entry.ExtractPng2();
-                    Entry = Arc.ItemWz.GetNode("Consume/0243.img/0" + Iter.Text + "/info/sample");
-                    if (Entry != null)
-                        Sample = Entry.ExtractPng2();
+                    string[] imgs = new string[] { "0243.img", "0263.img" };
+                    for (int i = 0; i <= 1; i++)
+                    {
+                        var Entry = Arc.ItemWz.GetNode("Consume/"+imgs[i]+"/0" + Iter.Text + "/info/icon");
+                        if (Entry != null)
+                            Icon = Entry.ExtractPng2();
+                        Entry = Arc.ItemWz.GetNode("Consume/"+imgs[i]+"/0" + Iter.Text + "/info/sample");
+                        if (Entry != null)
+                            Sample = Entry.ExtractPng2();
+                    }
                     var Desc = Iter.GetValue2("desc", "");
                     Grid.Rows.Add(ID, Icon, Name, Sample, Desc);
                 }
@@ -1553,6 +1557,7 @@ namespace WinFormsApp1
                                 for (int j2 = 0; j2 < Grid.Columns.Count; j2++)
                                     Row.Cells[j2].Value = Grid.Rows[i].Cells[j2].Value;
                                 SearchGrid.Rows.Add(Row);
+                                break;
                             }
                         }
                     }
@@ -1751,6 +1756,7 @@ namespace WinFormsApp1
                     break;
 
                 case 27:
+                    if (Arc.ItemWz == null) return null;
                     if (Arc.ItemWz.GetNode("Install/03010.img") != null)
                     {
                         switch (LeftStr(ID, 5))
@@ -1958,6 +1964,23 @@ namespace WinFormsApp1
         {
 
             tabControl1.SelectedIndex = comboBox4.SelectedIndex;
+
+        }
+
+        private void Form1_MinimumSizeChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void Form1_MaximumSizeChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+                ToolTip2.tooltipQuickView.Visible = false;
 
         }
 
