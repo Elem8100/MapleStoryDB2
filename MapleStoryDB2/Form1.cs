@@ -1732,6 +1732,8 @@ namespace WinFormsApp1
                     return "Item/Cash/" + LeftStr(ID, 4) + ".img/" + ID;
                     break;
                 case 1:
+                case 34:
+                case 36:
                     return "Item/Consume/" + LeftStr(ID, 4) + ".img/" + ID;
                     break;
                 case 2:
@@ -2102,6 +2104,7 @@ namespace WinFormsApp1
             {
                 if (e.RowIndex == -1) return;
                 if (e.RowIndex >= Grid.RowCount) return;
+                if (tabIndex == 38 || tabIndex==35) return;
                 string SelectID = "";
                 if (Grid.Rows[e.RowIndex].Cells[0].Value is string)
                 {
@@ -2139,7 +2142,7 @@ namespace WinFormsApp1
             {
                 if (e.RowIndex == -1) return;
                 if (e.RowIndex >= SearchGrid.RowCount) return;
-
+                if (tabIndex == 38 || tabIndex == 35) return;
                 string SelectID = "";
                 if (SearchGrid.Rows[e.RowIndex].Cells[0].Value is string)
                 {
