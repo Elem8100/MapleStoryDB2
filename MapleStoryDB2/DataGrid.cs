@@ -182,6 +182,7 @@ namespace DataGrid
                     Info.Width = 200;
                     StreetName.Width = 200;
                     MapName.Width = 200;
+                    Icon.Width = 250;
                     Columns.AddRange(ID, Icon, StreetName, MapName, Info);
                     break;
 
