@@ -12,7 +12,7 @@ namespace Wz.Utils
     public class Arc
     {
         public static Wz_Structure MobWz, Mob001Wz, Mob2Wz, MapWz, Map2Wz, Map001Wz, Map002Wz, SkillWz, Skill001Wz, Skill002Wz,
-         CharacterWz, ItemWz, NpcWz, MorphWz, StringWz, EtcWz, ReactorWz,UIWz,SoundWz,Sound001Wz,Sound2Wz,EffectWz,BaseWz;
+         CharacterWz, ItemWz, NpcWz, MorphWz, StringWz, EtcWz, ReactorWz, UIWz, SoundWz, Sound001Wz, Sound2Wz, EffectWz, BaseWz;
     }
 
     public static class WzUtils
@@ -26,15 +26,18 @@ namespace Wz.Utils
 
         public static string GetPathD(this Wz_Node Node)
         {
-            Stack<string> Path = new Stack<string>();
-            Wz_Node ThisNode = Node;
-            do
+            if (Node != null)
             {
-                Path.Push(ThisNode.Text);
-                ThisNode = ThisNode.ParentNode;
-            } while (ThisNode != null);
-            return string.Join(".", Path.ToArray());
-
+                Stack<string> Path = new Stack<string>();
+                Wz_Node ThisNode = Node;
+                do
+                {
+                    Path.Push(ThisNode.Text);
+                    ThisNode = ThisNode.ParentNode;
+                } while (ThisNode != null);
+                return string.Join(".", Path.ToArray());
+            }
+            return null;
         }
 
         public static string GetPath(this Wz_Node Node)
@@ -77,7 +80,7 @@ namespace Wz.Utils
 
         public static Wz_Node GetNode(this Wz_Node Node, string Path)
         {
-           // Wz_Node Result = null;
+
             if (Node.FindNodeByPathA(Path, true) != null)
             {
                 if (Node.FindNodeByPathA(Path, true).Value is Wz_Uol)
@@ -138,6 +141,7 @@ namespace Wz.Utils
 
         public static Bitmap ExtractPng2(this Wz_Node Node)
         {
+
             if (Node.HasNode("_outlink"))
             {
                 var LinkData = Node.GetNode("_outlink").Value.ToString();
@@ -191,14 +195,13 @@ namespace Wz.Utils
             {
                 var LinkData = Node.GetNode("_inlink").Value.ToString();
                 return (Node.GetNodeWzImage().Node.GetNode(LinkData).Value as Wz_Png).ExtractPng();
-
             }
             else if (Node.HasNode("source"))
             {
                 var LinkData = Node.GetNode("source").Value.ToString();
                 var DestPath = Regex.Replace(LinkData, Node.GetNodeWzFile().Type.ToString() + "/", "");
-                return (Node.GetNodeWzFile().WzStructure.GetNode(DestPath).Value as Wz_Png).ExtractPng();
-
+                if (Node.GetNodeWzFile().WzStructure.GetNode(DestPath) != null)
+                    return (Node.GetNodeWzFile().WzStructure.GetNode(DestPath).Value as Wz_Png).ExtractPng();
             }
             else
             {
@@ -206,9 +209,7 @@ namespace Wz.Utils
                     return (Node.ResolveUol().Value as Wz_Png).ExtractPng();
                 else
                     return (Node.Value as Wz_Png).ExtractPng();
-
             }
-
 
             return null;
         }
@@ -234,7 +235,7 @@ namespace Wz.Utils
             return Node.GetValueEx<string>("");
 
         }
-       
+
         public static string RightStr(string s, int count)
         {
             if (count > s.Length)
@@ -243,7 +244,7 @@ namespace Wz.Utils
         }
 
 
-       
+
 
     }
 
@@ -262,7 +263,7 @@ namespace Wz.Utils
 
         }
         public static WzComparerR2.WzLib.Wz_Node.WzNodeCollection Nodes(this Wz_Structure Self)
-         {
+        {
             return Self.WzNode.Nodes;
 
         }

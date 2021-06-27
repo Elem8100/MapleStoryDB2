@@ -1006,22 +1006,25 @@ namespace WinFormsApp1
             var Row = -1;
             var Links = new List<(string, int)>();
             Bitmap Icon = null;
+            var Name = "";
             foreach (var Img in Arc.NpcWz.Nodes())
             {
                 Row += 1;
                 var ID = Img.ImgID();
                 var Entry = Arc.NpcWz.GetNode(Img.Text);
-                if (Entry.GetNode("stand/0") != null)
+                if (Entry.GetNode("stand/0") != null  )
                     Icon = Entry.GetNode("stand/0").ExtractPng2();
                 if (Entry.GetNode("default/0") != null)
                     Icon = Entry.GetNode("default/0").ExtractPng2();
-                var Name = Arc.StringWz.GetNode("Npc.img/" + ID.IDString()).GetValue2("name", "");
+                if(Arc.StringWz.GetNode("Npc.img/"+ ID.IDString()) != null)            
+                  Name = Arc.StringWz.GetNode("Npc.img/" + ID.IDString()).GetValue2("name", "");
                 DumpData2(Arc.StringWz.GetNode("Npc.img/" + ID.IDString()));
                 Grid.Rows.Add(ID, Icon, Name, "");
                 var Link = Arc.NpcWz.GetNode(Img.Text + "/info/link");
                 if (Link != null)
                     Links.Add((Link.Value.ToString() + ".img", Row));
             }
+            
             Wz_Node Child = null;
             for (int i = 0; i < Links.Count; i++)
             {
