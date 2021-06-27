@@ -88,6 +88,7 @@ namespace WinFormsApp1
             this.Reactor = new System.Windows.Forms.TabPage();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.Music = new System.Windows.Forms.TabPage();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -195,7 +196,8 @@ namespace WinFormsApp1
             "萌獸",
             "傷害字型",
             "其他",
-            "Reactor"});
+            "Reactor",
+            "音樂"});
             this.comboBox4.Location = new System.Drawing.Point(1429, 3);
             this.comboBox4.MaxDropDownItems = 38;
             this.comboBox4.Name = "comboBox4";
@@ -384,6 +386,7 @@ namespace WinFormsApp1
             this.tabControl1.Controls.Add(this.DamageSkin);
             this.tabControl1.Controls.Add(this.Etc);
             this.tabControl1.Controls.Add(this.Reactor);
+            this.tabControl1.Controls.Add(this.Music);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft JhengHei UI", 11F);
             this.tabControl1.ImageList = this.imageList1;
@@ -861,6 +864,17 @@ namespace WinFormsApp1
             this.imageList1.Images.SetKeyName(30, "30.png");
             this.imageList1.Images.SetKeyName(31, "31.png");
             this.imageList1.Images.SetKeyName(32, "32.png");
+            this.imageList1.Images.SetKeyName(33, "icon2.png");
+            // 
+            // Music
+            // 
+            this.Music.ImageIndex = 33;
+            this.Music.Location = new System.Drawing.Point(4, 35);
+            this.Music.Name = "Music";
+            this.Music.Size = new System.Drawing.Size(1584, 459);
+            this.Music.TabIndex = 39;
+            this.Music.Text = "音樂";
+            this.Music.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -873,9 +887,7 @@ namespace WinFormsApp1
             this.Name = "Form1";
             this.Text = "MapleStoryDB2";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-          
             this.Load += new System.EventHandler(this.Form1_Load);
-         
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -943,6 +955,7 @@ namespace WinFormsApp1
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TabPage Music;
     }
 }
 

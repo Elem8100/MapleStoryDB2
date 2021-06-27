@@ -1248,8 +1248,40 @@ namespace WinFormsApp1
             Grid.Sort(Grid.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
 
         }
-        DataViewer[] DataGrid = new DataViewer[39];
-        DataViewer[] TempGrid = new DataViewer[39];
+        void LoadMusic()
+        {
+            foreach (var img in Arc.SoundWz.Nodes())
+            {
+                if (LeftStr(img.Text, 3) != "Bgm")
+                    continue;
+                foreach (var Iter in  Arc.SoundWz.GetNode(img.Text).Nodes )
+                {
+                   Grid.Rows.Add(Iter.GetPath());
+                }
+               
+            }
+
+            if (Arc.Sound2Wz != null)
+            {
+                foreach (var img in Arc.Sound2Wz.Nodes())
+                {
+                    if (LeftStr(img.Text, 3) == "Bgm" || LeftStr(img.Text, 4) == "PL_3" || LeftStr(img.Text, 4) == "PL_B" || LeftStr(img.Text, 4) == "PL_C" || LeftStr(img.Text, 4) == "PL_M")
+                    {
+
+                        foreach (var Iter in Arc.Sound2Wz.GetNode(img.Text).Nodes)
+                        {
+                            if(Iter.Value is Wz_Sound)
+                             Grid.Rows.Add(Iter.GetPath());
+                        }
+                    }
+
+                }
+            }
+
+            Grid.Sort(Grid.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
+        }
+        DataViewer[] DataGrid = new DataViewer[40];
+        DataViewer[] TempGrid = new DataViewer[40];
         bool FirstLoadBIN = false;
         void LoadBIN()
         {
@@ -1431,6 +1463,9 @@ namespace WinFormsApp1
                 case 38:
                     return "Reactor.wz";
                     break;
+                case 39:
+                    return "Sound.wz";
+                    break;
             }
             return "";
         }
@@ -1526,6 +1561,9 @@ namespace WinFormsApp1
                     LoadReactor();
                     break;
 
+                case 39:
+                    LoadMusic();
+                    break;
 
             }
 
@@ -1602,9 +1640,9 @@ namespace WinFormsApp1
                 if (FileExists(FolderPath + "\\string.wz"))
                 {
 
-                    //  Wz_Structure.DefaultEncoding = true;
+                    //  Wz_Structure.DefaultEncoding = Encoding.Default;
                     // Wz_Structure.DefaultAutoDetectExtFiles = false;
-                    //  Wz_Structure.DefaultImgCheckDisabled =true;
+                      Wz_Structure.DefaultImgCheckDisabled =true;
                     Arc.MobWz = new Wz_Structure();
                     Arc.MapWz = new Wz_Structure();
                     Arc.SkillWz = new Wz_Structure();
@@ -2104,7 +2142,7 @@ namespace WinFormsApp1
             {
                 if (e.RowIndex == -1) return;
                 if (e.RowIndex >= Grid.RowCount) return;
-                if (tabIndex == 38 || tabIndex==35) return;
+                if (tabIndex == 38 || tabIndex== 35 ) return;
                 string SelectID = "";
                 if (Grid.Rows[e.RowIndex].Cells[0].Value is string)
                 {
@@ -2120,8 +2158,27 @@ namespace WinFormsApp1
                         ShowMap(imgNode);
                       
                     }
+                    else if(tabIndex==39)
+                    {
+
+                        Wz_Sound sound = null; 
+                        if (Arc.SoundWz.GetNode(SelectID)!=null)
+                           sound= (Wz_Sound)Arc.SoundWz.GetNode(SelectID).Value;
+                        else if(Arc.Sound2Wz!=null && Arc.Sound2Wz.GetNode(SelectID) != null)
+                          sound = (Wz_Sound)Arc.Sound2Wz.GetNode(SelectID).Value;
+
+                        soundPlayer.UnLoad();
+                        byte[] data = sound.ExtractSound();
+                        if (data == null || data.Length <= 0)
+                        {
+                            return;
+                        }
+                        soundPlayer.PreLoad(data);
+                        soundPlayer.Play();
+                    }
                     else
                     {
+                        if (tabIndex == 39) return;
                         var Node = PluginManager.FindWz(GetIDPath(SelectID));
                         ToolTip2.quickView(Node);
                         ToolTip2.tooltipQuickView.Visible = true;
@@ -2142,7 +2199,7 @@ namespace WinFormsApp1
             {
                 if (e.RowIndex == -1) return;
                 if (e.RowIndex >= SearchGrid.RowCount) return;
-                if (tabIndex == 38 || tabIndex == 35) return;
+                if (tabIndex == 38 || tabIndex == 35 || tabIndex==39) return;
                 string SelectID = "";
                 if (SearchGrid.Rows[e.RowIndex].Cells[0].Value is string)
                 {
@@ -2241,7 +2298,7 @@ namespace WinFormsApp1
                 Un4seen.Bass.BASSError error = soundPlayer.GetLastError();
                 MessageBox.Show("Bass初始化失败！\r\n\r\nerrorCode : " + (int)error + "(" + error + ")", "虫子");
             }
-            for (int i = 0; i <= 38; i++)
+            for (int i = 0; i <= 39; i++)
             {
                 switch (i)
                 {
@@ -2334,6 +2391,13 @@ namespace WinFormsApp1
                         DataGrid[i] = new DataViewer(GridType.Reactor);
                         DataGrid[i].Parent = tabControl1.TabPages[i];
                         TempGrid[i] = new DataViewer(GridType.Reactor);
+                        TempGrid[i].Parent = tabControl1.TabPages[i];
+                        break;
+
+                    case 39:
+                        DataGrid[i] = new DataViewer(GridType.Music);
+                        DataGrid[i].Parent = tabControl1.TabPages[i];
+                        TempGrid[i] = new DataViewer(GridType.Music);
                         TempGrid[i].Parent = tabControl1.TabPages[i];
                         break;
 

@@ -243,6 +243,12 @@ namespace DataGrid
                     Columns.AddRange(ID, Icon, Info);
                     break;
 
+                case GridType.Music:
+                    RowTemplate.Height = 40;
+                    Name.Width = 800;
+                    Columns.AddRange(Name);
+                    break;
+
             }
 
             if (!System.Windows.Forms.SystemInformation.TerminalServerSession)
@@ -269,7 +275,8 @@ namespace DataGrid
         Morph,
         Familiar,
         DamageSkin,
-        Reactor
+        Reactor,
+        Music 
     }
 
     public static class DataGridViewExtension
